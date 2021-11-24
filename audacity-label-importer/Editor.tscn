@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://dialogic/plugins/audacity-label-importer/Editor.gd" type="Script" id=1]
+[ext_resource path="res://dialogic/plugins/audacity-label-importer/testlogo.png" type="Texture" id=2]
+
+[node name="Audacity_label_importer" type="AcceptDialog"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 313.0
+margin_top = 97.0
+margin_right = -322.0
+margin_bottom = -90.0
+window_title = "Audacity label importer"
+resizable = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+plugin_name = "Audacity label importer"
+plugin_icon = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scrollbox" type="ScrollContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 381.0
+margin_bottom = 377.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="items" type="ItemList" parent="scrollbox"]
+margin_right = 373.0
+margin_bottom = 369.0
+rect_min_size = Vector2( 350, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false ]
+allow_reselect = true
+auto_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="request_new_timecodes" type="ToolButton" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+text = "Load new timecode file"
+__meta__ = {
+"_edit_use_anchors_": false
+}
