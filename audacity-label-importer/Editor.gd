@@ -46,11 +46,6 @@ func reloadTargets():
 			#Add data on target event and line
 			var target = {"target" : vandt, "line" : line}
 			targetdata.append(target)
-func on_plugin_button_pressed():
-	if visible:
-		hide()
-	else:
-		popup()
 func refresh_me():
 	if loaded_timecodes.size() <= 0:
 		load_new()
