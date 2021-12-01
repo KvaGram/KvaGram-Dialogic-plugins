@@ -1,19 +1,12 @@
 tool
-extends WindowDialog
-var editor_reference
-var timeline_reference
+extends DialogicEditorPlugin
 export(int) var text_preview_length
-onready var targetList:ItemList = $s_container/target/s/items
-onready var sourceList:ItemList = $s_container/source/s/items
-export(String) var plugin_name : String
-export(Texture) var plugin_icon : Texture
 
 var targetdata = []
 var loaded_timecodes:Array = []
 
 func setup():
-	editor_reference = find_parent('EditorView')
-	timeline_reference = editor_reference.get_node("MainPanel/TimelineEditor")
+	.setup()
 	timeline_reference.connect("selection_updated", self, "onTimelineSelection")
 	self.connect("about_to_show", self, "refresh_me")
 func onTimelineSelection():
