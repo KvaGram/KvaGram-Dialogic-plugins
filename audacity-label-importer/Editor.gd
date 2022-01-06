@@ -2,6 +2,8 @@ tool
 extends DialogicEditorPlugin
 export(int) var text_preview_length
 
+onready var targetList:ItemList = $s_container/target/s/items
+onready var sourceList:ItemList = $s_container/source/s/items
 var targetdata = []
 var loaded_timecodes:Array = []
 
