@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://dialogic/plugins/Multilang/Editor.gd" type="Script" id=1]
+[ext_resource path="res://addons/dialogic/Images/Pieces/open-icon.svg" type="Texture" id=2]
+[ext_resource path="res://dialogic/plugins/Multilang/bangu.svg" type="Texture" id=3]
+[ext_resource path="res://addons/dialogic/Images/Context Menus/Remove.svg" type="Texture" id=4]
+
+[node name="plugin_Multilang" type="WindowDialog"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -610.0
+margin_top = -350.0
+margin_right = -382.0
+margin_bottom = -250.0
+rect_min_size = Vector2( 0, 100 )
+hint_tooltip = "Last tested on Dialogic v.1.4 BETA
+If broken, please submit a ticket at
+https://github.com/KvaGram/KvaGram-Dialogic-plugins/issues"
+size_flags_horizontal = 11
+size_flags_vertical = 11
+window_title = "Multilang"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+plugin_name = "Multilang"
+plugin_icon = ExtResource( 3 )
+
+[node name="container" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Langpanel" type="VBoxContainer" parent="container"]
+margin_right = 228.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="container/Langpanel"]
+margin_right = 228.0
+margin_bottom = 14.0
+text = "Select active language"
+
+[node name="lang_box" type="HBoxContainer" parent="container/Langpanel"]
+margin_top = 18.0
+margin_right = 228.0
+margin_bottom = 40.0
+
+[node name="Langpicker" type="OptionButton" parent="container/Langpanel/lang_box"]
+margin_right = 196.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "example name 1 (fallback)"
+items = [ "example name 1 (fallback)", null, false, 0, null, "example name 2", null, false, 1, null, "example name 3", null, false, 2, null ]
+selected = 0
+
+[node name="Delete_Lang" type="Button" parent="container/Langpanel/lang_box"]
+margin_left = 200.0
+margin_right = 228.0
+margin_bottom = 22.0
+hint_tooltip = "Delete selected langauge.
+NOTE: This will NOT delete the event-data already stored.
+You cannot remove the DEFAULT langauge.
+"
+icon = ExtResource( 4 )
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="container"]
+margin_top = 44.0
+margin_right = 228.0
+margin_bottom = 48.0
+
+[node name="edit_button" type="Button" parent="container"]
+margin_top = 52.0
+margin_right = 228.0
+margin_bottom = 72.0
+toggle_mode = true
+text = "open edit panel"
+icon = ExtResource( 2 )
+expand_icon = true
+
+[node name="Editpanel" type="VBoxContainer" parent="container"]
+visible = false
+margin_top = 74.0
+margin_right = 196.0
+margin_bottom = 124.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="container/Editpanel"]
+margin_right = 196.0
+margin_bottom = 4.0
+
+[node name="Label" type="Label" parent="container/Editpanel"]
+margin_top = 8.0
+margin_right = 196.0
+margin_bottom = 22.0
+text = "Set language name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="container/Editpanel"]
+margin_top = 26.0
+margin_right = 196.0
+margin_bottom = 50.0
+
+[node name="newlang" type="LineEdit" parent="container/Editpanel/HBoxContainer"]
+margin_right = 172.0
+margin_bottom = 24.0
+hint_tooltip = "The internal name for a new language.
+This name is used internally to store the alternate event data."
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="addlang" type="Button" parent="container/Editpanel/HBoxContainer"]
+margin_left = 176.0
+margin_right = 196.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.0196078, 1, 0, 1 )
+text = "+"
+flat = true
+
+[connection signal="about_to_show" from="." to="." method="_on_about_to_show"]
+[connection signal="resized" from="container" to="." method="_on_container_resized"]
+[connection signal="item_selected" from="container/Langpanel/lang_box/Langpicker" to="." method="_on_set_index"]
+[connection signal="toggled" from="container/edit_button" to="." method="set_editzone_visible"]
+[connection signal="text_changed" from="container/Editpanel/HBoxContainer/newlang" to="." method="_on_newlang_text_changed"]
+[connection signal="text_entered" from="container/Editpanel/HBoxContainer/newlang" to="." method="_on_newlang_text"]
+[connection signal="pressed" from="container/Editpanel/HBoxContainer/addlang" to="." method="_on_addlang"]
